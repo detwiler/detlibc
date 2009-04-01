@@ -4,7 +4,7 @@
 
 AC_INIT([detlibc],[0.0.1],[mike.detwiler@gmail.com])
 AC_PREREQ(2.61)
-AC_REVISION([$Revision: 164 $])
+AC_REVISION([$Revision$])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_SRCDIR([src/fatest.c])
