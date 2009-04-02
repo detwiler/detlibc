@@ -31,8 +31,12 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <stddef.h>
 #include <string.h>
+
+
+#ifdef HAVE_STDDEF_H
+#include <stddef.h>
+#endif /* HAVE_STDDEF_H */
 
 #ifdef HAVE_SYS_TYPES_H
 # include <sys/types.h>
@@ -66,11 +70,11 @@
 extern int errno;
 #endif /* !errno */
 
-#if HAVE_STDBOOL_H
+#ifdef HAVE_STDBOOL_H
 # include <stdbool.h>
 #endif /* HAVE_STDBOOL_H */
 
-#if HAVE_ASSERT_H
+#ifdef HAVE_ASSERT_H
 # include <assert.h>
 #endif /* HAVE_ASSERT_H */
 
