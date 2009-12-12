@@ -3,7 +3,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_INIT([detlibc],[0.0.1],[mike.detwiler@gmail.com])
-AC_PREREQ(2.61)
+AC_PREREQ(2.63)
 AC_REVISION([$Revision$])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
@@ -11,6 +11,7 @@ AC_CONFIG_SRCDIR([src/fatest.c])
 AC_CONFIG_HEADER([config.h])
 
 AM_INIT_AUTOMAKE([-Wall -Werror])
+AM_SILENT_RULES
 
 AC_GNU_SOURCE
 
