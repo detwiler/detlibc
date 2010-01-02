@@ -9,13 +9,17 @@ main(int argc, char **argv)
 {
   assert(argc == 3);
 
-  fa_t fa;
+  // TODO new interface in fa.h; verify correct usage
+  struct fa *fa;
 
-  assert(fa_compile(argv[1], &fa) == REG_NOERROR);
+  assert(fa_compile(argv[1], strlen(argv[1]), &fa) == REG_NOERROR);
 
   fa_minimize(fa);
 
-  char *example = fa_example(fa);
+  char *example = NULL;
+  size_t size = 0;
+
+  assert(fa_example(fa, &example, &size) == 0);
 
   printf("regexp: %s\n", argv[1]);
   printf("example: %s\n", example);
