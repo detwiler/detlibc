@@ -1,0 +1,29 @@
+# .gitignore
+
+# object files
+*.[oa]
+
+# generated build files
+autom4te.cache/
+autoscan.log
+build-aux/
+aclocal.m4
+config.*
+configure
+configure.scan
+libtool
+Makefile
+Makefile.in
+stamp-h1
+.deps/
+.libs/
+*.l[oa]
+
+# vim config files
+.gvimrc
+
+# cscope files
+cscope.*
+
+# ctags files
+tags
