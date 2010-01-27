@@ -1,5 +1,3 @@
-/* $Id$ */
-
 /* This file is based on the file common.h obtained at
  * http://sources.redhat.com/autobook/small-2.0.tar.gz
  *
@@ -29,26 +27,34 @@
 # include <config.h>
 #endif /* HAVE_CONFIG_H */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-
-#ifdef HAVE_STDDEF_H
-#include <stddef.h>
-#endif /* HAVE_STDDEF_H */
+#ifdef STDC_HEADERS
+# include <assert.h>
+# include <ctype.h>
+# include <errno.h>
+# include <float.h>
+# include <limits.h>
+# include <locale.h>
+# include <math.h>
+# include <setjmp.h>
+# include <signal.h>
+# include <stdarg.h>
+# include <stddef.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+#endif /* STDC_HEADERS */
 
 #ifdef HAVE_SYS_TYPES_H
 # include <sys/types.h>
 #endif /* HAVE_SYS_TYPES_H */
 
+#if HAVE_UNISTD_H
+# include <unistd.h>
+#endif /* HAVE_UNISTD_H */
+
 #ifdef HAVE_SYS_STAT_H
 # include <sys/stat.h>
 #endif /* HAVE_SYS_STAT_H */
-
-#ifdef HAVE_STRINGS_H
-# include <strings.h>
-#endif /* HAVE_STRINGS_H */
 
 #ifdef HAVE_INTTYPES_H
 # include <inttypes.h>
@@ -58,25 +64,20 @@
 # include <stdint.h>
 #endif /* HAVE_STDINT_H */
 
-#if HAVE_UNISTD_H
-# include <unistd.h>
-#endif /* HAVE_UNISTD_H */
+#ifdef HAVE_STRINGS_H
+# include <strings.h>
+#endif /* HAVE_STRINGS_H */
 
-#if HAVE_ERRNO_H
-# include <errno.h>
-#endif /* HAVE_ERRNO_H */
-
-#ifndef errno
-extern int errno;
-#endif /* !errno */
-
-#ifdef HAVE_STDBOOL_H
-# include <stdbool.h>
-#endif /* HAVE_STDBOOL_H */
-
-#ifdef HAVE_ASSERT_H
-# include <assert.h>
-#endif /* HAVE_ASSERT_H */
+#ifdef TIME_WITH_SYS_TIME
+# include <sys/time.h>
+# include <time.h>
+#else
+# ifdef HAVE_SYS_TIME
+#  include <sys/time.h>
+# else
+#  include <time.h>
+# endif /* HAVE_SYS_TIME */
+#endif /* TIME_WITH_SYS_TIME */
 
 #ifdef __cplusplus
 # define BEGIN_C_DECLS extern "C" {

@@ -1,5 +1,3 @@
-/* $Id$ */
-
 #include <fa.h>
 
 #include <det/common.h>
