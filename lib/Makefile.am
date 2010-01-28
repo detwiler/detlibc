@@ -1,3 +1,4 @@
-# $Id$
+# Makefile.am
 
-SUBDIRS = det
+SUBDIRS = common \
+	  det

@@ -1,6 +1,6 @@
-#include <fa.h>
+#include <common.h>
 
-#include <det/common.h>
+#include <fa.h>
 
 int
 main(int argc, char **argv)

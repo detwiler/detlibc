@@ -13,6 +13,9 @@ AM_INIT_AUTOMAKE([-Wall -Werror silent-rules dist-bzip2])
 
 AC_USE_SYSTEM_EXTENSIONS
 
+LT_PREREQ([2.2])
+LT_INIT
+
 # Checks for programs.
 AC_PROG_CC
 AC_PROG_INSTALL
@@ -139,7 +142,10 @@ AM_COND_IF([DET_WARN_ERROR],
 AC_SUBST([DET_CFLAGS])
 
 AC_CONFIG_FILES([Makefile
+                 include/Makefile
+                 include/det/Makefile
                  lib/Makefile
+                 lib/common/Makefile
                  lib/det/Makefile
                  src/Makefile])
 AC_OUTPUT
