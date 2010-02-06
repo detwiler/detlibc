@@ -69,7 +69,7 @@ det_err_quit(const char *fmt, ...)
 
   va_end(ap);
 
-  exit(EXIT_FAILURE);  // shouldn't get here
+  exit(EXIT_FAILURE);
 } // det_err_quit()
 
 void
@@ -83,7 +83,7 @@ det_err_exit(int error, const char *fmt, ...)
 
   va_end(ap);
 
-  exit(EXIT_FAILURE);  // shouldn't get here
+  exit(EXIT_FAILURE);
 } // det_err_exit()
 
 void
@@ -117,7 +117,7 @@ det_err_sys(const char *fmt, ...)
 
   va_end(ap);
 
-  exit(EXIT_FAILURE);  // shouldn't get here
+  exit(EXIT_FAILURE);
 } // det_err_sys()
 
 static void
