@@ -36,7 +36,7 @@ void
 det_err_dump(
     const char *format,
     ...
-    );
+    ) __attribute__ ((format(gnu_printf, 1, 2), noreturn));
 
 /*
  * Nonfatal error unrelated to system call.
@@ -46,7 +46,7 @@ void
 det_err_msg(
     const char *format,
     ...
-    );
+    ) __attribute__ ((format(gnu_printf, 1, 2)));
 
 /*
  * Fatal error unrelated to system call.
@@ -56,7 +56,7 @@ void
 det_err_quit(
     const char *format,
     ...
-    );
+    ) __attribute__ ((format(gnu_printf, 1, 2), noreturn));
 
 /*
  * Fatal error unrelated to system call.
@@ -68,7 +68,7 @@ det_err_exit(
     int error,
     const char *format,
     ...
-    );
+    ) __attribute__ ((format(gnu_printf, 2, 3), noreturn));
 
 /*
  * Nonfatal error related to system call.
@@ -78,7 +78,7 @@ void
 det_err_ret(
     const char *format,
     ...
-    );
+    ) __attribute__ ((format(gnu_printf, 1, 2)));
 
 /*
  * Fatal error related to system call.
@@ -88,7 +88,7 @@ void
 det_err_sys(
     const char *format,
     ...
-    );
+    ) __attribute__ ((format(gnu_printf, 1, 2), noreturn));
 
 __DET_END_C_DECLS__
 

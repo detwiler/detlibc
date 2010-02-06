@@ -25,7 +25,7 @@ err_doit(
     int error,
     const char *fmt,
     va_list ap
-    );
+    ) __attribute__ ((format(gnu_printf, 3, 0)));
 
 void
 det_err_dump(const char *fmt, ...)
