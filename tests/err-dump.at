@@ -1,4 +1,4 @@
-# err-msg.at
+# err-dump.at
 
 AT_SETUP([error dump])
 AT_KEYWORDS([error dump])
