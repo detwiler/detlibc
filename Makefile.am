@@ -1,7 +1,7 @@
 # Makefile.am
 
 SUBDIRS = include \
-	  lib \
-	  src
+	  det \
+	  tests
 
 ACLOCAL_AMFLAGS = -I m4

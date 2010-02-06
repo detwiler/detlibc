@@ -1,0 +1,3 @@
+# testsuite.at
+
+m4_include([err-msg.at])

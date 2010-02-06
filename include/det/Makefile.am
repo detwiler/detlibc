@@ -1,3 +1,4 @@
 # Makefile.am
 
-pkginclude_HEADERS =
+pkginclude_HEADERS = common.h \
+		     error.h

@@ -1,0 +1,9 @@
+# .gitignore
+
+atconfig
+atlocal
+package.m4
+test-err-msg
+testsuite
+testsuite.log
+testsuite.dir/

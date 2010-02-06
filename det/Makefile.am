@@ -2,12 +2,13 @@
 
 lib_LTLIBRARIES = libdet.la
 
-libdet_la_SOURCES =
+libdet_la_SOURCES = error.c
 
-libdet_la_LIBADD = ../common/libcommon.la
+noinst_HEADERS = system.h
 
-AM_CPPFLAGS = -I$(top_srcdir)/include \
-	      -I$(top_srcdir)/lib/common
+# libdet_la_LIBADD = ../gl/gnulib.la
+
+AM_CPPFLAGS = -I$(top_srcdir)/include
 
 AM_CFLAGS = $(DET_CFLAGS)
 

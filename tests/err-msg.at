@@ -1,0 +1,13 @@
+# err-msg.at
+
+AT_SETUP([error message])
+AT_KEYWORDS([error message])
+
+AT_CHECK([
+test-err-msg message for you sir
+],
+[0],[],
+[messageforyousir
+])
+
+AT_CLEANUP

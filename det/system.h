@@ -20,8 +20,8 @@
  * Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-#ifndef DET_COMMON_H
-#define DET_COMMON_H 1
+#ifndef DET_SYSTEM_H
+#define DET_SYSTEM_H 1
 
 #if HAVE_CONFIG_H
 # include <config.h>
@@ -32,6 +32,7 @@
 # include <ctype.h>
 # include <errno.h>
 # include <float.h>
+# include <inttypes.h>
 # include <limits.h>
 # include <locale.h>
 # include <math.h>
@@ -44,6 +45,22 @@
 # include <string.h>
 #endif /* STDC_HEADERS */
 
+#ifdef HAVE_STDBOOL_H
+# include <stdbool.h>
+#else /* HAVE_STDBOOL_H */
+# ifndef HAVE__BOOL
+#  ifdef __cplusplus
+typedef bool _Bool;
+#  else /* __cplusplus */
+#   define _Bool signed char
+#  endif /* __cplusplus */
+# endif /* !HAVE__BOOL */
+# define bool _Bool
+# define false 0
+# define true 1
+# define __bool_true_false_are_defined 1
+#endif /* HAVE_STDBOOL_H */
+
 #ifdef HAVE_SYS_TYPES_H
 # include <sys/types.h>
 #endif /* HAVE_SYS_TYPES_H */
@@ -55,18 +72,6 @@
 #ifdef HAVE_SYS_STAT_H
 # include <sys/stat.h>
 #endif /* HAVE_SYS_STAT_H */
-
-#ifdef HAVE_INTTYPES_H
-# include <inttypes.h>
-#endif /* HAVE_INTTYPES_H */
-
-#ifdef HAVE_STDINT_H
-# include <stdint.h>
-#endif /* HAVE_STDINT_H */
-
-#ifdef HAVE_STRINGS_H
-# include <strings.h>
-#endif /* HAVE_STRINGS_H */
 
 #ifdef TIME_WITH_SYS_TIME
 # include <sys/time.h>
@@ -87,4 +92,4 @@
 # define END_C_DECLS
 #endif /* __cplusplus */
 
-#endif /* !DET_COMMON_H */
+#endif /* !DET_SYSTEM_H */

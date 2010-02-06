@@ -6,7 +6,7 @@ AC_PREREQ(2.63)
 AC_REVISION([$Revision$])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
-AC_CONFIG_SRCDIR([src/fatest.c])
+AC_CONFIG_SRCDIR([det/system.h])
 AC_CONFIG_HEADER([config.h])
 
 AM_INIT_AUTOMAKE([-Wall -Werror silent-rules dist-bzip2])
@@ -18,15 +18,14 @@ LT_INIT
 
 # Checks for programs.
 AC_PROG_CC
+AC_PROG_CC_C99
 AC_PROG_INSTALL
-
-# Checks for libraries.
-AC_CHECK_LIB([fa], [fa_compile])
 
 # Checks for header files.
 AC_HEADER_STDC
+AC_HEADER_STDBOOL
 AC_HEADER_ASSERT
-AC_CHECK_HEADERS([sys/types.h sys/stat.h sys/time.h inttypes.h stdint.h strings.h unistd.h])
+AC_CHECK_HEADERS([sys/types.h sys/stat.h sys/time.h unistd.h])
 AC_HEADER_TIME
 
 # Checks for typedefs, structures, and compiler characteristics.
@@ -34,8 +33,9 @@ AC_TYPE_SIZE_T
 
 # Checks for library functions.
 
+AC_CHECK_FUNCS([strerror])
+
 # compiler options 
-AX_CFLAGS_GCC_OPTION([-std=gnu99], [DET_CFLAGS])
 
 # option to conditionally enable warnings
 AC_ARG_ENABLE([warnings],
@@ -141,11 +141,14 @@ AM_COND_IF([DET_WARN_ERROR],
 
 AC_SUBST([DET_CFLAGS])
 
+AC_DEFINE([memclr(s,n)], [memset((s), 0, (n))], [clear memory])
+
+AC_CONFIG_TESTDIR([tests])
+
 AC_CONFIG_FILES([Makefile
                  include/Makefile
                  include/det/Makefile
-                 lib/Makefile
-                 lib/common/Makefile
-                 lib/det/Makefile
-                 src/Makefile])
+                 det/Makefile
+                 tests/Makefile
+                 tests/atlocal])
 AC_OUTPUT
