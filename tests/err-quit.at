@@ -1,0 +1,11 @@
+# err-msg.at
+
+AT_SETUP([error quit])
+AT_KEYWORDS([error quit])
+
+AT_CHECK([test-err-quit "message for you sir"],
+[1],[ignore],
+[message for you sir
+])
+
+AT_CLEANUP

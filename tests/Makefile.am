@@ -1,15 +1,18 @@
 # Makefile.am
 
-check_PROGRAMS = test-err-msg \
-		 test-err-dump
+check_PROGRAMS = test-err-dump \
+		 test-err-msg \
+		 test-err-quit
 
-EXTRA_DIST = test-err-msg.c \
-	     test-err-dump.c
+EXTRA_DIST = test-err-dump.c \
+	     test-err-msg.c \
+	     test-err-quit.c
 
 TESTSUITE_AT = testsuite.at \
 	       local.at \
+	       err-dump.at \
 	       err-msg.at \
-	       err-dump.at 
+	       err-quit.at
 
 AM_CPPFLAGS = -I$(top_srcdir)/include \
 	      -I$(top_srcdir)/det

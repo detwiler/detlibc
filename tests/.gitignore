@@ -3,8 +3,9 @@
 atconfig
 atlocal
 package.m4
-test-err-msg
 test-err-dump
+test-err-msg
+test-err-quit
 testsuite
 testsuite.log
 testsuite.dir/
