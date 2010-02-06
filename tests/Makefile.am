@@ -4,12 +4,14 @@ check_PROGRAMS = test-err-dump \
 		 test-err-exit \
 		 test-err-msg \
 		 test-err-ret \
+		 test-err-sys \
 		 test-err-quit
 
 EXTRA_DIST = test-err-dump.c \
 	     test-err-exit.c \
 	     test-err-msg.c \
 	     test-err-ret.c \
+	     test-err-sys.c \
 	     test-err-quit.c
 
 TESTSUITE_AT = testsuite.at \
@@ -18,6 +20,7 @@ TESTSUITE_AT = testsuite.at \
 	       err-exit.at \
 	       err-msg.at \
 	       err-ret.at \
+	       err-sys.at \
 	       err-quit.at
 
 AM_CPPFLAGS = -I$(top_srcdir)/include \

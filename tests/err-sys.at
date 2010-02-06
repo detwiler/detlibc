@@ -1,0 +1,11 @@
+# err-sys.at
+
+AT_SETUP([error sys])
+AT_KEYWORDS([error sys])
+
+AT_CHECK([test-err-sys "message for you sir"],
+[1],[ignore],
+[message for you sir: Invalid argument
+])
+
+AT_CLEANUP
