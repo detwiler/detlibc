@@ -1,0 +1,13 @@
+# err-msg.at
+
+AT_SETUP([error dump])
+AT_KEYWORDS([error dump])
+
+AT_CHECK([test-err-dump "message for you sir"], [134], [ignore], [stderr]) 
+
+AT_CHECK([
+grep 'message for you sir: Invalid argument' stderr &&
+grep "Aborted.*(core dumped)" stderr
+], [0], [ignore])
+
+AT_CLEANUP

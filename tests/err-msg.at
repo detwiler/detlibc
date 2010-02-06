@@ -3,11 +3,9 @@
 AT_SETUP([error message])
 AT_KEYWORDS([error message])
 
-AT_CHECK([
-test-err-msg message for you sir
-],
-[0],[],
-[messageforyousir
+AT_CHECK([test-err-msg "message for you sir"],
+[0],[ignore],
+[message for you sir
 ])
 
 AT_CLEANUP

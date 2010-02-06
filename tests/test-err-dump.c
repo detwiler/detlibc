@@ -24,7 +24,9 @@ main(int argc, char **argv)
 {
   assert(argc == 2);
 
-  det_err_msg("%s", argv[1]);
+  errno = EINVAL;
+
+  det_err_dump("%s", argv[1]);
 
   return (EXIT_SUCCESS);
 } // main()
