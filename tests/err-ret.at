@@ -1,0 +1,11 @@
+# err-ret.at
+
+AT_SETUP([error return])
+AT_KEYWORDS([error return])
+
+AT_CHECK([test-err-ret "message for you sir"],
+[0],[ignore],
+[message for you sir: Invalid argument
+])
+
+AT_CLEANUP

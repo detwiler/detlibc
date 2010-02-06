@@ -6,6 +6,7 @@ package.m4
 test-err-dump
 test-err-exit
 test-err-msg
+test-err-ret
 test-err-quit
 testsuite
 testsuite.log

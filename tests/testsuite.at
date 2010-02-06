@@ -3,4 +3,5 @@
 m4_include([err-dump.at])
 m4_include([err-exit.at])
 m4_include([err-msg.at])
+m4_include([err-ret.at])
 m4_include([err-quit.at])
