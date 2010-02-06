@@ -1,16 +1,19 @@
 # Makefile.am
 
 check_PROGRAMS = test-err-dump \
+		 test-err-exit \
 		 test-err-msg \
 		 test-err-quit
 
 EXTRA_DIST = test-err-dump.c \
+	     test-err-exit.c \
 	     test-err-msg.c \
 	     test-err-quit.c
 
 TESTSUITE_AT = testsuite.at \
 	       local.at \
 	       err-dump.at \
+	       err-exit.at \
 	       err-msg.at \
 	       err-quit.at
 

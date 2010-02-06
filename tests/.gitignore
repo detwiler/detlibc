@@ -4,6 +4,7 @@ atconfig
 atlocal
 package.m4
 test-err-dump
+test-err-exit
 test-err-msg
 test-err-quit
 testsuite

@@ -1,0 +1,11 @@
+# err-exit.at
+
+AT_SETUP([error exit])
+AT_KEYWORDS([error exit])
+
+AT_CHECK([test-err-exit "message for you sir"],
+[1],[ignore],
+[message for you sir: Invalid argument
+])
+
+AT_CLEANUP
