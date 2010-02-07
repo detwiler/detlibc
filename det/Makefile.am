@@ -6,6 +6,8 @@ libdet_la_SOURCES = error.c
 
 noinst_HEADERS = system.h
 
+libdet_la_LDFLAGS = -version-info 0:0:0
+
 # libdet_la_LIBADD = ../gl/gnulib.la
 
 AM_CPPFLAGS = -I$(top_srcdir)/include
