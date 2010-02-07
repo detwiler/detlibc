@@ -1,5 +1,7 @@
 # Makefile.am
 
+SUBDIRS = gl
+
 check_PROGRAMS = test-err-dump \
 		 test-err-exit \
 		 test-err-msg \
@@ -24,6 +26,8 @@ TESTSUITE_AT = testsuite.at \
 	       err-quit.at
 
 AM_CPPFLAGS = -I$(top_srcdir)/include \
+	      -I$(top_builddir)/gl \
+	      -I$(top_srcdir)/gl \
 	      -I$(top_srcdir)/det
 
 AM_CFLAGS = @DET_CFLAGS@

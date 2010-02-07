@@ -9,7 +9,7 @@ AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_SRCDIR([det/system.h])
 AC_CONFIG_HEADER([config.h])
 
-AM_INIT_AUTOMAKE([-Wall -Werror silent-rules dist-bzip2])
+AM_INIT_AUTOMAKE([-Wall -Werror silent-rules color-tests dist-bzip2])
 
 AC_USE_SYSTEM_EXTENSIONS
 
@@ -18,6 +18,10 @@ LT_INIT
 
 # Checks for programs.
 AC_PROG_CC
+
+# gnulib!
+gl_EARLY
+
 AC_PROG_CC_C99
 AC_PROG_INSTALL
 
@@ -27,6 +31,9 @@ AC_HEADER_STDBOOL
 AC_HEADER_ASSERT
 AC_CHECK_HEADERS([sys/types.h sys/stat.h sys/time.h unistd.h])
 AC_HEADER_TIME
+
+# gnulib!
+gl_INIT
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_TYPE_SIZE_T
@@ -163,7 +170,9 @@ AC_CONFIG_TESTDIR([tests])
 AC_CONFIG_FILES([Makefile
                  include/Makefile
                  include/det/Makefile
+                 gl/Makefile
                  det/Makefile
                  tests/Makefile
+                 tests/gl/Makefile
                  tests/atlocal])
 AC_OUTPUT

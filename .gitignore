@@ -12,6 +12,7 @@ aclocal.m4
 config.*
 configure
 configure.scan
+gl/
 libtool
 Makefile
 Makefile.in

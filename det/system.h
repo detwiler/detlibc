@@ -80,6 +80,7 @@ typedef bool _Bool;
 #endif /* TIME_WITH_SYS_TIME */
 
 #include <det/debug.h>
+#include <xalloc.h>
 
 #ifdef __cplusplus
 # define BEGIN_C_DECLS extern "C" {
