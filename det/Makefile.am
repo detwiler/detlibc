@@ -10,7 +10,7 @@ noinst_HEADERS = system.h
 
 AM_CPPFLAGS = -I$(top_srcdir)/include
 
-AM_CFLAGS = $(DET_CFLAGS)
+AM_CFLAGS = @DET_CFLAGS@
 
 if DET_GOBS_WARN
 AM_CFLAGS += -Wstrict-prototypes -Wold-style-definition

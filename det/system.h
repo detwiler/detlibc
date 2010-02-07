@@ -1,14 +1,10 @@
-/* This file is based on the file common.h obtained at
- * http://sources.redhat.com/autobook/small-2.0.tar.gz
+/*
+ * Copyright (C) 2010  J. Michael Detwiler
  *
- * That file was distributed with the following license:
- *
- * Copyright (C) 2000, 2006 Gary V. Vaughan
- *
- * This program is free software; you can redistribute it and/or modify it
+ * This program is free software: you can redistribute it and/or modify it
  * under the terms of the GNU General Public License as published by the Free
- * Software Foundation; either version 2, or (at your option) any later
- * version.
+ * Software Foundation, either version 3 of the License, or (at your option)
+ * any later version.
  *
  * This program is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
@@ -16,8 +12,7 @@
  * more details.
  *
  * You should have received a copy of the GNU General Public License along with
- * this program; if not, write to the Free Software Foundation, Inc., 51
- * Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef DET_SYSTEM_H
@@ -83,6 +78,8 @@ typedef bool _Bool;
 #  include <time.h>
 # endif /* HAVE_SYS_TIME */
 #endif /* TIME_WITH_SYS_TIME */
+
+#include <det/debug.h>
 
 #ifdef __cplusplus
 # define BEGIN_C_DECLS extern "C" {

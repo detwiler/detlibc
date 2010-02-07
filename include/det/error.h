@@ -22,12 +22,6 @@
 
 __DET_BEGIN_C_DECLS__
 
-#if defined (__DET_DEBUG__)
-
-#else /* __DET_DEBUG__ */
-
-#endif /* __DET_DEBUG__ */
-
 /*
  * Fatal error related to system call.
  * Print a message, dump core, and terminate.

@@ -105,7 +105,6 @@ AM_COND_IF([DET_GOBS_WARN],
             AX_CFLAGS_GCC_OPTION([-Winit-self], [DET_CFLAGS])
             AX_CFLAGS_GCC_OPTION([-Wmissing-include-dirs], [DET_CFLAGS])
             AX_CFLAGS_GCC_OPTION([-Wfloat-equal], [DET_CFLAGS])
-            AX_CFLAGS_GCC_OPTION([-Wtraditional-conversion], [DET_CFLAGS])
             AX_CFLAGS_GCC_OPTION([-Wundef], [DET_CFLAGS])
             AX_CFLAGS_GCC_OPTION([-Wshadow], [DET_CFLAGS])
             AX_CFLAGS_GCC_OPTION([-Wbad-function-cast], [DET_CFLAGS])
@@ -142,6 +141,22 @@ AM_COND_IF([DET_WARN_ERROR],
 AC_SUBST([DET_CFLAGS])
 
 AC_DEFINE([memclr(s,n)], [memset((s), 0, (n))], [clear memory])
+
+# option to conditionally enable debugging options
+AC_ARG_ENABLE([debug],
+              [AS_HELP_STRING([--enable-debug],
+                              [enable debug (default no)])],
+              [case "${enableval}" in
+                 yes) det_debug="yes" ;;
+                 no) det_debug="no" ;;
+                 *) AC_MSG_ERROR(
+                      [bad value ${enableval} for --enable-debug]) ;;
+              esac], [det_debug="no"])
+AM_CONDITIONAL([DET_DEBUG], [test "x${det_debug}" = xyes])
+AM_COND_IF([DET_DEBUG],
+           [AX_CFLAGS_GCC_OPTION([-g])
+            AX_CFLAGS_GCC_OPTION([-O0])
+            AC_DEFINE([DET_DEBUG], [1], [enable debugging])])
 
 AC_CONFIG_TESTDIR([tests])
 
