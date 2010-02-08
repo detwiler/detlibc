@@ -84,13 +84,13 @@ AM_COND_IF([DET_EXTRA_WARN],
 # option to conditionally enable pedantic warnings
 AC_ARG_ENABLE([pedantic],
               [AS_HELP_STRING([--enable-pedantic],
-                              [enable pedantic warnings (default yes)])],
+                              [enable pedantic warnings (default no)])],
               [case "${enableval}" in
                  yes) det_pedantic="yes" ;;
                  no) det_pedantic="no" ;;
                  *) AC_MSG_ERROR(
                       [bad value ${enableval} for --enable-pedantic]) ;;
-              esac], [det_pedantic="yes"])
+              esac], [det_pedantic="no"])
 AM_CONDITIONAL([DET_PEDANTIC], [test "x${det_pedantic}" = xyes])
 AM_COND_IF([DET_PEDANTIC],
            [AX_CFLAGS_GCC_OPTION([-pedantic], [DET_CFLAGS])])

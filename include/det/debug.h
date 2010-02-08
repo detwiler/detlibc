@@ -29,42 +29,42 @@ __DET_BEGIN_C_DECLS__
   do \
   { \
     det_err_dump("[%s:%d] %s" fmt, __FILE__, __LINE__, \
-        __FUNCTION__, ##__VAR_ARGS__); \
+        __FUNCTION__, ##__VA_ARGS__); \
   } while (0)
 
 #define det_derr_exit(error, fmt, ...) \
   do \
   { \
     det_err_exit((error), "[%s:%d] %s" fmt, __FILE__, __LINE__, \
-        __FUNCTION__, ##__VAR_ARGS__); \
+        __FUNCTION__, ##__VA_ARGS__); \
   } while (0)
 
 #define det_derr_msg(fmt, ...) \
   do \
   { \
     det_err_msg("[%s:%d] %s" fmt, __FILE__, __LINE__, \
-        __FUNCTION__, ##__VAR_ARGS__); \
+        __FUNCTION__, ##__VA_ARGS__); \
   } while (0)
 
 #define det_derr_ret(fmt, ...) \
   do \
   { \
     det_err_ret("[%s:%d] %s" fmt, __FILE__, __LINE__, \
-        __FUNCTION__, ##__VAR_ARGS__); \
+        __FUNCTION__, ##__VA_ARGS__); \
   } while (0)
 
 #define det_derr_sys(fmt, ...) \
   do \
   { \
     det_err_sys("[%s:%d] %s" fmt, __FILE__, __LINE__, \
-        __FUNCTION__, ##__VAR_ARGS__); \
+        __FUNCTION__, ##__VA_ARGS__); \
   } while (0)
 
 #define det_derr_quit(fmt, ...) \
   do \
   { \
     det_err_quit("[%s:%d] %s" fmt, __FILE__, __LINE__, \
-        __FUNCTION__, ##__VAR_ARGS__); \
+        __FUNCTION__, ##__VA_ARGS__); \
   } while (0)
 
 #else /* DET_DEBUG */
