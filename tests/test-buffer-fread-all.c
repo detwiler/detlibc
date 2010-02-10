@@ -44,6 +44,8 @@ main(int argc, char **argv)
       fwrite(det_buffer_get_data(buf), sizeof(uint8_t),
           (size_t) det_buffer_get_size(buf), stdout);
 
+      fclose(file);
+
       det_buffer_clear(buf);
     }
   }
