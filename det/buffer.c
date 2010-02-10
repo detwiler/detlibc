@@ -19,6 +19,8 @@
 
 #include <det/buffer.h>
 
+#define MIN_READ_REQUEST 64
+
 struct det_buffer
 {
   size_t capacity;
@@ -218,15 +220,19 @@ det_buffer_fread_all(struct det_buffer *buffer, FILE *stream)
   if (!S_ISREG(sbuf.st_mode))
     return (det_buffer_fread_eof(buffer, stream));
 
-  // TODO finish
+  ssize_t result = det_buffer_fread(buffer, (size_t) sbuf.st_size,
+      sizeof(*buffer->data), stream);
 
-  return (0);
+  if (result == sbuf.st_size)
+    assert(!det_buffer_fread(buffer, 1, 1, stream) && feof(stream));
+
+  return (result);
 } // det_buffer_fread_all()
 
 static void
 det_buffer_realloc(struct det_buffer *buffer, size_t size)
 {
-  buffer->data = xrealloc(buffer->data, size);
+  buffer->data = x2nrealloc(buffer->data, &size, sizeof(*buffer->data));
 
   buffer->capacity = size;
 } // det_buffer_realloc()
@@ -237,15 +243,16 @@ det_buffer_make_room(struct det_buffer *buffer, size_t size)
   if (size  < (size_t) det_buffer_get_remaining(buffer))
   {
     size_t total = (size_t) det_buffer_get_size(buffer) + size;
-    size_t increase = total - buffer->capacity;
+
+    size_t old = buffer->capacity;
+
+    det_derr_msg("Insufficient remaining capacity: %d, for read of %u bytes." \
+       "Requesting reallocation to total capacity of %u bytes.", 
+       det_buffer_get_remaining(buffer), size, total);
 
     det_buffer_realloc(buffer, total);
 
-    det_derr_msg("Insufficient remaining capacity: %d, for read of %u bytes." \
-       "Reallocating to total capacity of %u bytes.", 
-       det_buffer_get_remaining(buffer), size, total);
-
-    return (increase);
+    return (buffer->capacity - old);
   } 
 
   return (0);
@@ -254,10 +261,15 @@ det_buffer_make_room(struct det_buffer *buffer, size_t size)
 static ssize_t
 det_buffer_fread_eof(struct det_buffer *buffer, FILE *stream)
 {
-  buffer = buffer;
-  stream = stream;
+  ssize_t orig_size = det_buffer_get_size(buffer);
 
-  // TODO finish
+  ssize_t request;
 
-  return (0);
+  do
+  {
+    request = MAX(det_buffer_get_remaining(buffer), MIN_READ_REQUEST);
+  } while (det_buffer_fread(buffer, (size_t) request, sizeof(*buffer->data),
+        stream) == request);
+
+  return (det_buffer_get_size(buffer) - orig_size);
 } // det_buffer_fread_eof()

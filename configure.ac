@@ -112,7 +112,6 @@ AM_COND_IF([DET_GOBS_WARN],
             AX_CFLAGS_GCC_OPTION([-Winit-self], [DET_CFLAGS])
             AX_CFLAGS_GCC_OPTION([-Wmissing-include-dirs], [DET_CFLAGS])
             AX_CFLAGS_GCC_OPTION([-Wfloat-equal], [DET_CFLAGS])
-            AX_CFLAGS_GCC_OPTION([-Wundef], [DET_CFLAGS])
             AX_CFLAGS_GCC_OPTION([-Wshadow], [DET_CFLAGS])
             AX_CFLAGS_GCC_OPTION([-Wbad-function-cast], [DET_CFLAGS])
             AX_CFLAGS_GCC_OPTION([-Wcast-qual], [DET_CFLAGS])

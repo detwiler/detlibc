@@ -81,6 +81,7 @@ typedef bool _Bool;
 
 #include <det/debug.h>
 #include <xalloc.h>
+#include <minmax.h>
 
 #ifdef __cplusplus
 # define BEGIN_C_DECLS extern "C" {
