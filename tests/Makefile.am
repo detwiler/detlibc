@@ -10,7 +10,7 @@ check_PROGRAMS = test-buffer-fread-all \
 		 test-err-sys \
 		 test-err-quit
 
-EXTRA_DIST = test-buffer-fread-all \
+EXTRA_DIST = test-buffer-fread-all.c \
 	     test-err-dump.c \
 	     test-err-exit.c \
 	     test-err-msg.c \
