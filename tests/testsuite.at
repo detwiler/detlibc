@@ -1,5 +1,7 @@
 # testsuite.at
 
+m4_include([buffer-fread-all.at])
+
 m4_include([err-dump.at])
 m4_include([err-exit.at])
 m4_include([err-msg.at])

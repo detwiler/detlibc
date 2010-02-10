@@ -3,6 +3,7 @@
 atconfig
 atlocal
 package.m4
+test-buffer-fread-all
 test-err-dump
 test-err-exit
 test-err-msg

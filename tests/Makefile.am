@@ -2,14 +2,16 @@
 
 SUBDIRS = gl
 
-check_PROGRAMS = test-err-dump \
+check_PROGRAMS = test-buffer-fread-all \
+		 test-err-dump \
 		 test-err-exit \
 		 test-err-msg \
 		 test-err-ret \
 		 test-err-sys \
 		 test-err-quit
 
-EXTRA_DIST = test-err-dump.c \
+EXTRA_DIST = test-buffer-fread-all \
+	     test-err-dump.c \
 	     test-err-exit.c \
 	     test-err-msg.c \
 	     test-err-ret.c \
@@ -18,6 +20,7 @@ EXTRA_DIST = test-err-dump.c \
 
 TESTSUITE_AT = testsuite.at \
 	       local.at \
+	       buffer-fread-all.at \
 	       err-dump.at \
 	       err-exit.at \
 	       err-msg.at \

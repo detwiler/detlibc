@@ -40,6 +40,11 @@ det_buffer_calloc(
     size_t nmemb
     );
 
+void
+det_buffer_free(
+    struct det_buffer *buffer
+    );
+
 ssize_t
 det_buffer_get_size(
     const struct det_buffer *buffer

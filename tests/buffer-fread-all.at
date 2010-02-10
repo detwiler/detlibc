@@ -1,0 +1,13 @@
+# buffer-fread-all.at
+
+AT_SETUP([buffer fread all])
+AT_KEYWORDS([buffer fread all])
+
+AT_CHECK([
+head --bytes=1024 /dev/urandom > test.dat
+test-buffer-fread-all test.dat > args.dat
+cat test.dat | test-buffer-fread-all > stdin.dat
+diff --brief test.dat args.dat && diff --brief test.dat stdin.dat
+], [0], [], [stderr]) 
+
+AT_CLEANUP

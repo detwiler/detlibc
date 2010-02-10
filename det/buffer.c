@@ -20,6 +20,7 @@
 #include <det/buffer.h>
 
 #define MIN_READ_REQUEST 64
+#define DEFAULT_BUFFER_LENGTH 64
 
 struct det_buffer
 {
@@ -55,6 +56,8 @@ det_buffer_malloc(size_t size)
 {
   struct det_buffer *result = xcalloc(1, sizeof(struct det_buffer));
 
+  size = size ? size : DEFAULT_BUFFER_LENGTH;
+
   result->data = xmalloc(size);
 
   result->capacity = size;
@@ -70,6 +73,8 @@ struct det_buffer*
 det_buffer_zalloc(size_t size)
 {
   struct det_buffer *result = xcalloc(1, sizeof(struct det_buffer));
+
+  size = size ? size : DEFAULT_BUFFER_LENGTH;
 
   result->data = xzalloc(size);
 
@@ -87,6 +92,19 @@ det_buffer_calloc(size_t size, size_t nmemb)
 {
   return (det_buffer_zalloc(size * nmemb));
 } // det_buffer_calloc()
+
+void
+det_buffer_free(struct det_buffer *buffer)
+{
+  if (!buffer)
+  {
+    errno = EINVAL;
+    det_derr_ret("NULL pointer");
+  }
+
+  free(buffer->data);
+  free(buffer);
+} // det_buffer_free()
 
 ssize_t
 det_buffer_get_size(const struct det_buffer *buffer)
@@ -170,9 +188,15 @@ det_buffer_fread(struct det_buffer *buffer, size_t size, size_t nmemb,
     return (-1);
   }
 
+  det_derr_msg("Read request of %u members of size %u.", nmemb, size);
+
   (void) det_buffer_make_room(buffer, (size * nmemb));
 
+  det_derr_msg("Here!");
+
   ssize_t result = (ssize_t) fread(buffer->mark, size, nmemb, stream);
+
+  det_derr_msg("Read %d bytes.", result);
 
   buffer->mark += result;
 
@@ -220,8 +244,13 @@ det_buffer_fread_all(struct det_buffer *buffer, FILE *stream)
   if (!S_ISREG(sbuf.st_mode))
     return (det_buffer_fread_eof(buffer, stream));
 
-  ssize_t result = det_buffer_fread(buffer, (size_t) sbuf.st_size,
-      sizeof(*buffer->data), stream);
+  det_derr_msg("Requesting read of %u members of size %u.",
+      (size_t) sbuf.st_size, sizeof(*buffer->data));
+
+  ssize_t result = det_buffer_fread(buffer, sizeof(*buffer->data),
+      (size_t) sbuf.st_size, stream);
+
+  det_derr_msg("Here!");
 
   if (result == sbuf.st_size)
     assert(!det_buffer_fread(buffer, 1, 1, stream) && feof(stream));
@@ -232,7 +261,11 @@ det_buffer_fread_all(struct det_buffer *buffer, FILE *stream)
 static void
 det_buffer_realloc(struct det_buffer *buffer, size_t size)
 {
+  ssize_t length = det_buffer_get_size(buffer);
+
   buffer->data = x2nrealloc(buffer->data, &size, sizeof(*buffer->data));
+
+  buffer->mark = buffer->data + length;
 
   buffer->capacity = size;
 } // det_buffer_realloc()
@@ -240,8 +273,14 @@ det_buffer_realloc(struct det_buffer *buffer, size_t size)
 static size_t
 det_buffer_make_room(struct det_buffer *buffer, size_t size)
 {
-  if (size  < (size_t) det_buffer_get_remaining(buffer))
+  det_derr_msg("Requested remaining capacity: %u", size);
+  det_derr_msg("Actual remaining capacity: %d",
+      det_buffer_get_remaining(buffer));
+
+  if (size  > (size_t) det_buffer_get_remaining(buffer))
   {
+    det_derr_msg("Here!");
+
     size_t total = (size_t) det_buffer_get_size(buffer) + size;
 
     size_t old = buffer->capacity;
@@ -255,6 +294,8 @@ det_buffer_make_room(struct det_buffer *buffer, size_t size)
     return (buffer->capacity - old);
   } 
 
+  det_derr_msg("Here!");
+
   return (0);
 } // det_buffer_make_room()
 
@@ -263,13 +304,12 @@ det_buffer_fread_eof(struct det_buffer *buffer, FILE *stream)
 {
   ssize_t orig_size = det_buffer_get_size(buffer);
 
-  ssize_t request;
-
   do
   {
-    request = MAX(det_buffer_get_remaining(buffer), MIN_READ_REQUEST);
-  } while (det_buffer_fread(buffer, (size_t) request, sizeof(*buffer->data),
-        stream) == request);
+    ssize_t request = MAX(det_buffer_get_remaining(buffer), MIN_READ_REQUEST);
+    det_buffer_fread(buffer, sizeof(*buffer->data), (size_t) request, stream);
+
+  } while (!feof(stream));
 
   return (det_buffer_get_size(buffer) - orig_size);
 } // det_buffer_fread_eof()
