@@ -1,7 +1,7 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_INIT([detlibc],[0.0.1],[mike.detwiler@gmail.com])
+AC_INIT([detlibc],[0.1.0],[mike.detwiler@gmail.com])
 AC_PREREQ(2.63)
 AC_REVISION([$Revision$])
 AC_CONFIG_AUX_DIR([build-aux])
