@@ -7,7 +7,7 @@ AT_CHECK([test-err-dump "message for you sir"], [134], [ignore], [stderr])
 
 AT_CHECK([
 grep 'message for you sir: Invalid argument' stderr &&
-grep "Aborted.*(core dumped)" stderr
+grep "Aborted" stderr
 ], [0], [ignore])
 
 AT_CLEANUP
