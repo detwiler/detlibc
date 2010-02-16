@@ -9,6 +9,7 @@ autoscan.log
 build-aux/
 INSTALL
 aclocal.m4
+ChangeLog
 config.*
 configure
 configure.scan
