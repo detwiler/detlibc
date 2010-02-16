@@ -5,4 +5,5 @@ detincludedir = $(includedir)/det
 detinclude_HEADERS = buffer.h \
 		     common.h \
 		     debug.h \
-		     error.h
+		     error.h \
+		     socket_un.h

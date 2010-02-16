@@ -68,6 +68,14 @@ typedef bool _Bool;
 # include <sys/stat.h>
 #endif /* HAVE_SYS_STAT_H */
 
+#ifdef HAVE_SYS_SOCKET_H
+# include <sys/socket.h>
+#endif /* HAVE_SYS_SOCKET_H */
+
+#ifdef HAVE_SYS_UN_H
+# include <sys/un.h>
+#endif /* HAVE_SYS_SOCKET_H */
+
 #ifdef TIME_WITH_SYS_TIME
 # include <sys/time.h>
 # include <time.h>
