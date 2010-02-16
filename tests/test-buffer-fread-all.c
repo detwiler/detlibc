@@ -22,7 +22,7 @@
 int
 main(int argc, char **argv)
 {
-  struct det_buffer *buf = det_buffer_malloc(0);
+  struct det_buffer *buf = det_buffer_zalloc(0);
 
   if (argc > 1)
   {

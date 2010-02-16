@@ -190,7 +190,7 @@ det_buffer_fread(struct det_buffer *buffer, size_t size, size_t nmemb,
 
   det_derr_msg("Read request of %u members of size %u.", nmemb, size);
 
-  (void) det_buffer_make_room(buffer, (size * nmemb));
+  size_t increase = det_buffer_make_room(buffer, (size * nmemb));
 
   det_derr_msg("Here!");
 
@@ -199,6 +199,9 @@ det_buffer_fread(struct det_buffer *buffer, size_t size, size_t nmemb,
   det_derr_msg("Read %d bytes.", result);
 
   buffer->mark += result;
+
+  if (increase && buffer->zero)
+    memclr(buffer->mark, (size_t) det_buffer_get_remaining(buffer));
 
   return (result);
 } // det_buffer_fread()
@@ -213,12 +216,15 @@ det_buffer_read(struct det_buffer *buffer, int fd, size_t size)
     return (-1);
   }
 
-  (void) det_buffer_make_room(buffer, size);
+  size_t increase =  det_buffer_make_room(buffer, size);
 
   ssize_t result = read(fd, buffer->mark, size);
 
   if (result > 0)
     buffer->mark += result;
+
+  if (increase && buffer->zero)
+    memclr(buffer->mark, (size_t) det_buffer_get_remaining(buffer));
 
   return (result);
 } // det_buffer_read()
@@ -285,9 +291,9 @@ det_buffer_make_room(struct det_buffer *buffer, size_t size)
 
     size_t old = buffer->capacity;
 
-    det_derr_msg("Insufficient remaining capacity: %d, for read of %u bytes." \
-       "Requesting reallocation to total capacity of %u bytes.", 
-       det_buffer_get_remaining(buffer), size, total);
+    det_derr_msg("Insufficient remaining capacity: %d, for read of %u bytes. "
+        "Requesting reallocation to total capacity of %u bytes.", 
+        det_buffer_get_remaining(buffer), size, total);
 
     det_buffer_realloc(buffer, total);
 
