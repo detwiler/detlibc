@@ -8,7 +8,8 @@ check_PROGRAMS = test-buffer-fread-all \
 		 test-err-msg \
 		 test-err-ret \
 		 test-err-sys \
-		 test-err-quit
+		 test-err-quit \
+		 test-socket-signal
 
 EXTRA_DIST = test-buffer-fread-all.c \
 	     test-err-dump.c \
@@ -16,7 +17,8 @@ EXTRA_DIST = test-buffer-fread-all.c \
 	     test-err-msg.c \
 	     test-err-ret.c \
 	     test-err-sys.c \
-	     test-err-quit.c
+	     test-err-quit.c \
+	     test-socket-signal
 
 TESTSUITE_AT = testsuite.at \
 	       local.at \
@@ -26,7 +28,8 @@ TESTSUITE_AT = testsuite.at \
 	       err-msg.at \
 	       err-ret.at \
 	       err-sys.at \
-	       err-quit.at
+	       err-quit.at \
+	       sock-sig.at
 
 AM_CPPFLAGS = -I$(top_srcdir)/include \
 	      -I$(top_builddir)/gl \

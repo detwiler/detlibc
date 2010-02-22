@@ -1,0 +1,13 @@
+# err-ret.at
+
+AT_SETUP([socket signal])
+AT_KEYWORDS([socket signal])
+
+AT_CHECK([test-socket-signal message for you, sir], [0],
+[MESSAGE
+FOR
+YOU,
+SIR
+], [ignore])
+
+AT_CLEANUP

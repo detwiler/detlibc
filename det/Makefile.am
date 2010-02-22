@@ -4,6 +4,8 @@ lib_LTLIBRARIES = libdet.la
 
 libdet_la_SOURCES = buffer.c \
 		    error.c \
+		    signal.c \
+		    socket.c \
 		    socket_un.c
 
 noinst_HEADERS = system.h

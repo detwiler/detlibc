@@ -15,33 +15,32 @@
  * this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __DET_SOCKET_UN_H__
-#define __DET_SOCKET_UN_H__ 1
+#ifndef __DET_SIGNAL_H__
+#define __DET_SIGNAL_H__ 1
 
 #include <det/common.h>
 
 __DET_BEGIN_C_DECLS__
 
-#define DET_MAX_SUN_PATHLEN (92)
+void
+det_signal_wait(void);
 
-int
-det_serv_listen_un(
-    const char *name,
-    int backlog
+void
+det_signal_parent(
+    pid_t pid
     );
 
-int
-det_serv_accept_un(
-    int listenfd,
-    uid_t *uidptr
+void
+det_wait_parent(void);
+
+void
+det_signal_child(
+    pid_t pid
     );
 
-int
-det_cli_conn_un(
-    const char *server,
-    const char *client
-    );
+void
+det_wait_child(void);
 
 __DET_END_C_DECLS__
 
-#endif /* !__DET_SOCKET_UN_H__ */
+#endif /* !__DET_SIGNAL_H__ */

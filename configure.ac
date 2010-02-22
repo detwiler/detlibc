@@ -30,7 +30,7 @@ AC_HEADER_STDC
 AC_HEADER_STDBOOL
 AC_HEADER_ASSERT
 AC_CHECK_HEADERS([sys/socket.h sys/stat.h sys/time.h sys/types.h sys/un.h])
-AC_CHECK_HEADERS([unistd.h])
+AC_CHECK_HEADERS([sys/wait.h unistd.h])
 AC_HEADER_TIME
 
 # gnulib!
@@ -39,11 +39,13 @@ gl_INIT
 # Checks for typedefs, structures, and compiler characteristics.
 AC_TYPE_SIZE_T
 AC_TYPE_SSIZE_T
+AC_TYPE_PID_T
 AC_TYPE_UINT8_T
 
 # Checks for library functions.
 
-AC_CHECK_FUNCS([socket strerror])
+AC_FUNC_FORK
+AC_CHECK_FUNCS([select socket strerror])
 
 # compiler options 
 

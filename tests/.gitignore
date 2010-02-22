@@ -10,6 +10,7 @@ test-err-msg
 test-err-ret
 test-err-sys
 test-err-quit
+test-socket-signal
 testsuite
 testsuite.log
 testsuite.dir/

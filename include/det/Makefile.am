@@ -6,4 +6,6 @@ detinclude_HEADERS = buffer.h \
 		     common.h \
 		     debug.h \
 		     error.h \
+		     signal.h \
+		     socket.h \
 		     socket_un.h

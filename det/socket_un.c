@@ -20,8 +20,15 @@
 #include <det/socket_un.h>
 
 int
-det_serv_listen_un(const char *name)
+det_serv_listen_un(const char *name, int backlog)
 {
+  if (!name)
+  {
+    errno = EINVAL;
+    det_derr_ret("null parameter");
+    return (-1);
+  }
+
   if (strnlen(name, DET_MAX_SUN_PATHLEN) == DET_MAX_SUN_PATHLEN)
   {
     errno = EINVAL;
@@ -53,7 +60,7 @@ det_serv_listen_un(const char *name)
     goto errout;
   }
 
-  if (listen(fd, DET_SERV_QLEN) < 0)
+  if (listen(fd, backlog) < 0)
   {
     det_derr_ret("listen failure");
     goto errout;
@@ -104,6 +111,9 @@ det_serv_accept_un(int listenfd, uid_t *uidptr)
 
   if (uidptr)
     *uidptr = sb.st_uid;
+
+  det_derr_msg("received connection path: %s, fd: %d, uid: %d", sun.sun_path,
+      clifd, *uidptr);
 
   (void) unlink(sun.sun_path);
 
@@ -172,6 +182,8 @@ det_cli_conn_un(const char *server, const char *client)
     det_derr_ret("connect failure");
     goto errout;
   }
+
+  det_derr_msg("connected to path: %s, fd: %d", sun.sun_path, fd);
 
   return (fd);
 

@@ -74,7 +74,11 @@ typedef bool _Bool;
 
 #ifdef HAVE_SYS_UN_H
 # include <sys/un.h>
-#endif /* HAVE_SYS_SOCKET_H */
+#endif /* HAVE_SYS_UN_H */
+
+#ifdef HAVE_SYS_WAIT_H
+# include <sys/wait.h>
+#endif /* HAVE_SYS_WAIT_H */
 
 #ifdef TIME_WITH_SYS_TIME
 # include <sys/time.h>
@@ -90,6 +94,8 @@ typedef bool _Bool;
 #include <det/debug.h>
 #include <xalloc.h>
 #include <minmax.h>
+
+#define num_elts(a) (sizeof(a) / sizeof(a[0]))
 
 #ifdef __cplusplus
 # define BEGIN_C_DECLS extern "C" {
