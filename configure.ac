@@ -40,6 +40,7 @@ gl_INIT
 AC_TYPE_SIZE_T
 AC_TYPE_SSIZE_T
 AC_TYPE_PID_T
+AC_TYPE_UID_T
 AC_TYPE_UINT8_T
 
 # Checks for library functions.
@@ -175,8 +176,9 @@ AC_CONFIG_FILES([Makefile
                  include/Makefile
                  include/det/Makefile
                  gl/Makefile
+                 gl/gnu/Makefile
+                 gl/tests/Makefile
                  det/Makefile
                  tests/Makefile
-                 tests/gl/Makefile
                  tests/atlocal])
 AC_OUTPUT

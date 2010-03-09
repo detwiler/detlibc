@@ -1,7 +1,5 @@
 # Makefile.am
 
-SUBDIRS = gl
-
 check_PROGRAMS = test-buffer-fread-all \
 		 test-err-dump \
 		 test-err-exit \
@@ -32,8 +30,8 @@ TESTSUITE_AT = testsuite.at \
 	       sock-sig.at
 
 AM_CPPFLAGS = -I$(top_srcdir)/include \
-	      -I$(top_builddir)/gl \
-	      -I$(top_srcdir)/gl \
+	      -I$(top_builddir)/gl/gnu \
+	      -I$(top_srcdir)/gl/gnu \
 	      -I$(top_srcdir)/det
 
 AM_CFLAGS = @DET_CFLAGS@

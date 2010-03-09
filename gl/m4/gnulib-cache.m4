@@ -15,7 +15,7 @@
 
 
 # Specification in the form of a command-line invocation:
-#   gnulib-tool --import --dir=. --lib=libgnu --source-base=gl --m4-base=gl/m4 --doc-base=gl/doc --tests-base=tests/gl --aux-dir=build-aux --with-tests --libtool --macro-prefix=gl --vc-files minmax xalloc
+#   gnulib-tool --import --dir=. --lib=libgnu --source-base=gl/gnu --m4-base=gl/m4 --doc-base=gl/doc --tests-base=gl/tests --aux-dir=build-aux --with-tests --libtool --macro-prefix=gl --vc-files minmax xalloc
 
 # Specification in the form of a few gnulib-tool.m4 macro invocations:
 gl_LOCAL_DIR([])
@@ -24,11 +24,11 @@ gl_MODULES([
   xalloc
 ])
 gl_AVOID([])
-gl_SOURCE_BASE([gl])
+gl_SOURCE_BASE([gl/gnu])
 gl_M4_BASE([gl/m4])
 gl_PO_BASE([])
 gl_DOC_BASE([gl/doc])
-gl_TESTS_BASE([tests/gl])
+gl_TESTS_BASE([gl/tests])
 gl_WITH_TESTS
 gl_LIB([libgnu])
 gl_MAKEFILE_NAME([])
