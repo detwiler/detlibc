@@ -23,23 +23,23 @@
 __DET_BEGIN_C_DECLS__
 
 void
-det_signal_wait(void);
+det_signal_wait(void) DETLIB_EXPORT;
 
 void
 det_signal_parent(
     pid_t pid
-    );
+    ) DETLIB_EXPORT;
 
 void
-det_wait_parent(void);
+det_wait_parent(void) DETLIB_EXPORT;
 
 void
 det_signal_child(
     pid_t pid
-    );
+    ) DETLIB_EXPORT;
 
 void
-det_wait_child(void);
+det_wait_child(void) DETLIB_EXPORT;
 
 __DET_END_C_DECLS__
 

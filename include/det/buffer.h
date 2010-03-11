@@ -22,53 +22,53 @@
 
 __DET_BEGIN_C_DECLS__
 
-struct det_buffer;
+struct det_buffer DETLIB_EXPORT;
 
 struct det_buffer*
 det_buffer_malloc(
     size_t size
-    );
+    ) DETLIB_EXPORT;
 
 struct det_buffer*
 det_buffer_zalloc(
     size_t size
-    );
+    ) DETLIB_EXPORT;
 
 struct det_buffer*
 det_buffer_calloc(
     size_t size,
     size_t nmemb
-    );
+    ) DETLIB_EXPORT;
 
 void
 det_buffer_free(
     struct det_buffer *buffer
-    );
+    ) DETLIB_EXPORT;
 
 ssize_t
 det_buffer_get_size(
     const struct det_buffer *buffer
-    );
+    ) DETLIB_EXPORT;
 
 ssize_t
 det_buffer_get_capacity(
     const struct det_buffer *buffer
-    );
+    ) DETLIB_EXPORT;
 
 ssize_t
 det_buffer_get_remaining(
     const struct det_buffer *buffer
-    );
+    ) DETLIB_EXPORT;
 
 const void*
 det_buffer_get_data(
     const struct det_buffer *buffer
-    );
+    ) DETLIB_EXPORT;
 
 ssize_t
 det_buffer_clear(
     struct det_buffer *buffer
-    );
+    ) DETLIB_EXPORT;
 
 ssize_t
 det_buffer_fread(
@@ -76,20 +76,20 @@ det_buffer_fread(
     size_t size,
     size_t nmemb,
     FILE *stream
-    );
+    ) DETLIB_EXPORT;
 
 ssize_t
 det_buffer_read(
     struct det_buffer *buffer,
     int fd,
     size_t size
-    );
+    ) DETLIB_EXPORT;
 
 ssize_t
 det_buffer_fread_all(
     struct det_buffer *buffer,
     FILE *stream
-    );
+    ) DETLIB_EXPORT;
 
 __DET_END_C_DECLS__
 

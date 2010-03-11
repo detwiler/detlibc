@@ -28,19 +28,19 @@ int
 det_serv_listen_un(
     const char *name,
     int backlog
-    );
+    ) DETLIB_EXPORT;
 
 int
 det_serv_accept_un(
     int listenfd,
     uid_t *uidptr
-    );
+    ) DETLIB_EXPORT;
 
 int
 det_cli_conn_un(
     const char *server,
     const char *client
-    );
+    ) DETLIB_EXPORT;
 
 __DET_END_C_DECLS__
 

@@ -154,6 +154,8 @@ AC_SUBST([DET_CFLAGS])
 
 AC_DEFINE([memclr(s,n)], [memset((s), 0, (n))], [clear memory])
 
+AC_DEFINE([BUILDING_LIBDET], [1], [Are we building libdet?])
+
 # option to conditionally enable debugging options
 AC_ARG_ENABLE([debug],
               [AS_HELP_STRING([--enable-debug],

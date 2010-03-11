@@ -27,14 +27,14 @@ det_send_message(
     int fd,
     struct iovec *iov,
     size_t iovlen
-    );
+    ) DETLIB_EXPORT;
 
 ssize_t
 det_receive_message(
     int fd,
     struct iovec *iov,
     size_t iovlen
-    );
+    ) DETLIB_EXPORT;
 
 __DET_END_C_DECLS__
 

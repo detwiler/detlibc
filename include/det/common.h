@@ -26,4 +26,10 @@
 # define __DET_END_C_DECLS__
 #endif /* __cplusplus */
 
+#if BUILDING_LIBDET && HAVE_VISIBILITY
+# define DETLIB_EXPORT __attribute__ ((__visibility__("default")))
+#else
+# define DETLIB_EXPORT
+#endif /* BUILDING_LIBDET && HAVE_VISIBILITY */
+
 #endif /* !__DET_COMMON_H__ */

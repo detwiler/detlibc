@@ -15,11 +15,12 @@
 
 
 # Specification in the form of a command-line invocation:
-#   gnulib-tool --import --dir=. --lib=libgnu --source-base=gl/gnu --m4-base=gl/m4 --doc-base=gl/doc --tests-base=gl/tests --aux-dir=build-aux --with-tests --libtool --macro-prefix=gl --vc-files minmax xalloc
+#   gnulib-tool --import --dir=. --lib=libgnu --source-base=gl/gnu --m4-base=gl/m4 --doc-base=gl/doc --tests-base=gl/tests --aux-dir=build-aux --with-tests --libtool --macro-prefix=gl --vc-files lib-symbol-visibility minmax xalloc
 
 # Specification in the form of a few gnulib-tool.m4 macro invocations:
 gl_LOCAL_DIR([])
 gl_MODULES([
+  lib-symbol-visibility
   minmax
   xalloc
 ])

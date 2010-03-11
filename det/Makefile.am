@@ -23,3 +23,5 @@ AM_CFLAGS = @DET_CFLAGS@
 if DET_GOBS_WARN
 AM_CFLAGS += -Wstrict-prototypes -Wold-style-definition
 endif
+
+AM_CFLAGS += @CFLAG_VISIBILITY@
