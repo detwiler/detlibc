@@ -1,7 +1,10 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_INIT([detlibc],[0.1.0],[mike.detwiler@gmail.com])
+AC_INIT([detlibc],
+        [m4_esyscmd([gl/build-aux/git-version-gen .tarball-version])],
+        [mike.detwiler@gmail.com])
+
 AC_PREREQ(2.63)
 AC_REVISION([$Revision$])
 AC_CONFIG_AUX_DIR([build-aux])
@@ -9,7 +12,8 @@ AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_SRCDIR([det/system.h])
 AC_CONFIG_HEADER([config.h])
 
-AM_INIT_AUTOMAKE([-Wall -Werror silent-rules color-tests dist-bzip2])
+AM_INIT_AUTOMAKE([-Wall -Werror color-tests dist-bzip2])
+AM_SILENT_RULES([yes])
 
 AC_USE_SYSTEM_EXTENSIONS
 

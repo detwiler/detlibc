@@ -1,9 +1,6 @@
 #! /bin/sh
 
-echo
-echo "Generating ChangeLog..."
-
-git2cl >|ChangeLog
+touch ChangeLog || exit 1
 
 echo
 echo "Updating gnulib sources..."

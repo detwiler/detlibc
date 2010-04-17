@@ -13,6 +13,7 @@ ChangeLog
 config.*
 configure
 configure.scan
+detlibc-release
 gl/
 libtool
 Makefile
@@ -21,6 +22,8 @@ stamp-h1
 .deps/
 .libs/
 *.l[oa]
+.tarball-version
+.version
 
 # vim config files
 .gvimrc
