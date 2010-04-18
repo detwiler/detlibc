@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_INIT([detlibc],
-        [m4_esyscmd([gl/build-aux/git-version-gen .tarball-version])],
+        [m4_esyscmd([build-aux/git-version-gen .tarball-version])],
         [mike.detwiler@gmail.com])
 
 AC_PREREQ(2.63)
