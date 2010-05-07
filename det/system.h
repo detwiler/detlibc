@@ -40,22 +40,6 @@
 # include <string.h>
 #endif /* STDC_HEADERS */
 
-#ifdef HAVE_STDBOOL_H
-# include <stdbool.h>
-#else /* HAVE_STDBOOL_H */
-# ifndef HAVE__BOOL
-#  ifdef __cplusplus
-typedef bool _Bool;
-#  else /* __cplusplus */
-#   define _Bool signed char
-#  endif /* __cplusplus */
-# endif /* !HAVE__BOOL */
-# define bool _Bool
-# define false 0
-# define true 1
-# define __bool_true_false_are_defined 1
-#endif /* HAVE_STDBOOL_H */
-
 #ifdef HAVE_SYS_TYPES_H
 # include <sys/types.h>
 #endif /* HAVE_SYS_TYPES_H */
@@ -91,11 +75,14 @@ typedef bool _Bool;
 # endif /* HAVE_SYS_TIME */
 #endif /* TIME_WITH_SYS_TIME */
 
-#include <det/debug.h>
-#include <xalloc.h>
+/* gnulib ensures presence */
 #include <minmax.h>
+#include <stdbool.h>
+#include <xalloc.h>
 
-#define num_elts(a) (sizeof(a) / sizeof(a[0]))
+/* error functions and debug macros */
+#include <det/error.h>
+#include <det/debug.h>
 
 #ifdef __cplusplus
 # define BEGIN_C_DECLS extern "C" {

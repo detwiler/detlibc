@@ -15,15 +15,18 @@
 
 
 # Specification in the form of a command-line invocation:
-#   gnulib-tool --import --dir=. --lib=libgnu --source-base=gl/gnu --m4-base=gl/m4 --doc-base=gl/doc --tests-base=gl/tests --aux-dir=build-aux --with-tests --libtool --macro-prefix=gl --vc-files git-version-gen gitlog-to-changelog lib-symbol-visibility minmax xalloc
+#   gnulib-tool --import --dir=. --lib=libgnu --source-base=gl/gnu --m4-base=gl/m4 --doc-base=gl/doc --tests-base=gl/tests --aux-dir=build-aux --with-tests --libtool --macro-prefix=gl --vc-files do-release-commit-and-tag git-version-gen gitlog-to-changelog lib-symbol-visibility minmax stdbool vc-list-files xalloc
 
 # Specification in the form of a few gnulib-tool.m4 macro invocations:
 gl_LOCAL_DIR([])
 gl_MODULES([
+  do-release-commit-and-tag
   git-version-gen
   gitlog-to-changelog
   lib-symbol-visibility
   minmax
+  stdbool
+  vc-list-files
   xalloc
 ])
 gl_AVOID([])
