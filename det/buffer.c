@@ -98,8 +98,10 @@ det_buffer_free(struct det_buffer *buffer)
 {
   if (!buffer)
   {
+    // TODO clean this up!
     errno = EINVAL;
     det_derr_ret("NULL pointer");
+    return;
   }
 
   free(buffer->data);

@@ -101,6 +101,8 @@ AM_CONDITIONAL([DET_WARN_ERROR], [test "x$det_warn_error" = xyes])
 
 # Checks for programs.
 AC_PROG_CC
+AC_PROG_CC_C99
+AC_PROG_CC_C_O
 
 # gnulib!
 gl_EARLY
@@ -124,24 +126,28 @@ AC_CHECK_HEADERS([sys/socket.h sys/stat.h sys/time.h sys/types.h sys/un.h])
 AC_CHECK_HEADERS([sys/wait.h unistd.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
+# typedefs, structures
 AC_TYPE_INT8_T
+AC_TYPE_INT16_T
 AC_TYPE_INT32_T
 AC_TYPE_INT64_T
 AC_TYPE_INTMAX_T
 AC_TYPE_INTPTR_T
+AC_TYPE_SSIZE_T
+
 AC_TYPE_UINT8_T
+AC_TYPE_UINT16_T
 AC_TYPE_UINT32_T
 AC_TYPE_UINT64_T
 AC_TYPE_UINTMAX_T
 AC_TYPE_UINTPTR_T
 AC_TYPE_SIZE_T
-AC_TYPE_SSIZE_T
+
 AC_TYPE_OFF_T
 AC_TYPE_PID_T
 AC_TYPE_UID_T
 
-AC_PROG_CC_C99
-AC_PROG_CC_C_O
+# compiler characteristics
 AC_PROG_CPP
 AC_C_INLINE
 AC_C_RESTRICT
@@ -214,7 +220,7 @@ AC_DEFINE([likely(x)],
           [likely branch prediction])
 
 AC_DEFINE([unlikely(x)],
-          [__builtin_expect(!!(x), 1)],
+          [__builtin_expect(!!(x), 0)],
           [unlikely branch prediction])
 
 # substitutions
