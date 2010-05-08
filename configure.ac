@@ -207,6 +207,10 @@ AC_DEFINE([memclr(s,n)],
           [memset((s), 0, (n))],
           [clear memory])
 
+AC_DEFINE([strclr(s)],
+          [memclr((s), strlen((s)))],
+          [clear string])
+
 AC_DEFINE([num_elts(a)],
           [(sizeof(a) / sizeof(a[[0]]))],
           [number of elements for static array a])
