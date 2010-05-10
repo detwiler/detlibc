@@ -190,15 +190,13 @@ det_buffer_fread(struct det_buffer *buffer, size_t size, size_t nmemb,
     return (-1);
   }
 
-  det_derr_msg("Read request of %u members of size %u.", nmemb, size);
+  // det_derr_msg("Read request of %u members of size %u.", nmemb, size);
 
   size_t increase = det_buffer_make_room(buffer, (size * nmemb));
 
-  det_derr_msg("Here!");
-
   ssize_t result = (ssize_t) fread(buffer->mark, size, nmemb, stream);
 
-  det_derr_msg("Read %d bytes.", result);
+  // det_derr_msg("Read %d bytes.", result);
 
   buffer->mark += result;
 
@@ -252,13 +250,11 @@ det_buffer_fread_all(struct det_buffer *buffer, FILE *stream)
   if (!S_ISREG(sbuf.st_mode))
     return (det_buffer_fread_eof(buffer, stream));
 
-  det_derr_msg("Requesting read of %u members of size %u.",
-      (size_t) sbuf.st_size, sizeof(*buffer->data));
+  // det_derr_msg("Requesting read of %u members of size %u.",
+      // (size_t) sbuf.st_size, sizeof(*buffer->data));
 
   ssize_t result = det_buffer_fread(buffer, sizeof(*buffer->data),
       (size_t) sbuf.st_size, stream);
-
-  det_derr_msg("Here!");
 
   if (result == sbuf.st_size)
     assert(!det_buffer_fread(buffer, 1, 1, stream) && feof(stream));
@@ -281,28 +277,24 @@ det_buffer_realloc(struct det_buffer *buffer, size_t size)
 static size_t
 det_buffer_make_room(struct det_buffer *buffer, size_t size)
 {
-  det_derr_msg("Requested remaining capacity: %u", size);
-  det_derr_msg("Actual remaining capacity: %d",
-      det_buffer_get_remaining(buffer));
+  // det_derr_msg("Requested remaining capacity: %u", size);
+  // det_derr_msg("Actual remaining capacity: %d",
+    //  det_buffer_get_remaining(buffer));
 
   if (size  > (size_t) det_buffer_get_remaining(buffer))
   {
-    det_derr_msg("Here!");
-
     size_t total = (size_t) det_buffer_get_size(buffer) + size;
 
     size_t old = buffer->capacity;
 
-    det_derr_msg("Insufficient remaining capacity: %d, for read of %u bytes. "
-        "Requesting reallocation to total capacity of %u bytes.", 
-        det_buffer_get_remaining(buffer), size, total);
+    //det_derr_msg("Insufficient remaining capacity: %d, for read of %u bytes. "
+      //  "Requesting reallocation to total capacity of %u bytes.", 
+        // det_buffer_get_remaining(buffer), size, total);
 
     det_buffer_realloc(buffer, total);
 
     return (buffer->capacity - old);
   } 
-
-  det_derr_msg("Here!");
 
   return (0);
 } // det_buffer_make_room()
