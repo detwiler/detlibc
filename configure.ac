@@ -154,6 +154,28 @@ AC_C_RESTRICT
 AC_C_VARARRAYS
 AC_C_TYPEOF
 
+AC_MSG_CHECKING([for function attribute format(gnu_printf)])
+AC_COMPILE_IFELSE(
+  [AC_LANG_PROGRAM(
+   [void foo(const char *fmt, ...) __attribute__ ((format(gnu_printf, 1, 2)));],
+   [foo("%s", "foo");])],
+  [AC_MSG_RESULT([yes])
+   AC_DEFINE([det_format_printf(x,y)],
+             [__attribute__ ((format(gnu_printf, (x),(y))))],
+             [printf format attribute])],
+  [AC_MSG_RESULT([no])
+   AC_MSG_CHECKING([for function attribute format(printf)])
+   AC_COMPILE_IFELSE(
+    [AC_LANG_PROGRAM(
+     [void foo(const char *fmt, ...) __attribute__ ((format(printf, 1, 2)));],
+     [foo("%s", "foo");])],
+    [AC_MSG_RESULT([yes])
+     AC_DEFINE([det_format_printf(x,y)],
+               [__attribute ((format(printf, (x),(y))))],
+               [printf format attribute])],
+    [AC_MSG_RESULT([no])
+     AC_DEFINE([det_format_printf(x,y)], [], [printf format attribute])])])
+
 AM_COND_IF([DET_WARN],
            [AX_CFLAGS_GCC_OPTION([-Wall], [DET_CFLAGS])
             AX_CFLAGS_GCC_OPTION([-Wswitch-default], [DET_CFLAGS])

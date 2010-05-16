@@ -30,7 +30,7 @@ void
 det_err_dump(
     const char *format,
     ...
-    ) __attribute__ ((format(gnu_printf, 1, 2), noreturn)) DETLIB_EXPORT;
+    ) det_format_printf(1, 2) __attribute__ ((noreturn)) DETLIB_EXPORT;
 
 /*
  * Nonfatal error unrelated to system call.
@@ -40,7 +40,7 @@ void
 det_err_msg(
     const char *format,
     ...
-    ) __attribute__ ((format(gnu_printf, 1, 2))) DETLIB_EXPORT;
+    ) det_format_printf(1, 2) DETLIB_EXPORT;
 
 /*
  * Fatal error unrelated to system call.
@@ -50,7 +50,7 @@ void
 det_err_quit(
     const char *format,
     ...
-    ) __attribute__ ((format(gnu_printf, 1, 2), noreturn)) DETLIB_EXPORT;
+    ) det_format_printf(1, 2) __attribute__ ((noreturn)) DETLIB_EXPORT;
 
 /*
  * Fatal error unrelated to system call.
@@ -62,7 +62,7 @@ det_err_exit(
     int error,
     const char *format,
     ...
-    ) __attribute__ ((format(gnu_printf, 2, 3), noreturn)) DETLIB_EXPORT;
+    ) det_format_printf(2, 3) __attribute__ ((noreturn)) DETLIB_EXPORT;
 
 /*
  * Nonfatal error related to system call.
@@ -72,7 +72,7 @@ void
 det_err_ret(
     const char *format,
     ...
-    ) __attribute__ ((format(gnu_printf, 1, 2))) DETLIB_EXPORT;
+    ) det_format_printf(1, 2) DETLIB_EXPORT;
 
 /*
  * Fatal error related to system call.
@@ -82,7 +82,7 @@ void
 det_err_sys(
     const char *format,
     ...
-    ) __attribute__ ((format(gnu_printf, 1, 2), noreturn)) DETLIB_EXPORT;
+    ) det_format_printf(1, 2) __attribute__ ((noreturn)) DETLIB_EXPORT;
 
 __DET_END_C_DECLS__
 
