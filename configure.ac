@@ -155,6 +155,8 @@ AC_C_VARARRAYS
 AC_C_TYPEOF
 
 AC_MSG_CHECKING([for function attribute format(gnu_printf)])
+INIT_CFLAGS="$CFLAGS"
+CFLAGS="$CFLAGS -Wformat -Werror"
 AC_COMPILE_IFELSE(
   [AC_LANG_PROGRAM(
    [void foo(const char *fmt, ...) __attribute__ ((format(gnu_printf, 1, 2)));],
@@ -175,6 +177,7 @@ AC_COMPILE_IFELSE(
                [printf format attribute])],
     [AC_MSG_RESULT([no])
      AC_DEFINE([det_format_printf(x,y)], [], [printf format attribute])])])
+CFLAGS="$INIT_CFLAGS"
 
 AM_COND_IF([DET_WARN],
            [AX_CFLAGS_GCC_OPTION([-Wall], [DET_CFLAGS])
