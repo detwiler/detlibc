@@ -14,14 +14,17 @@ AM_CPPFLAGS = -I$(top_srcdir)/include \
 	      -I$(top_builddir)/gl/gnu \
 	      -I$(top_srcdir)/gl/gnu
 
+AM_CFLAGS = $(CFLAG_VISIBILITY) \
+	    $(WARN_CFLAGS) \
+	    $(WERROR_CFLAGS) \
+	    $(DEBUG_CFLAGS)
+
 libdet_la_LDFLAGS = -version-info 0:0:0
+
+if HAVE_LD_VERSION_SCRIPT
+libdet_la_LDFLAGS += -Wl,--version-script=$(srcdir)/libdet.map
+endif
 
 libdet_la_LIBADD = ../gl/gnu/libgnu.la
 
-AM_CFLAGS = @DET_CFLAGS@
-
-if DET_GOBS_WARN
-AM_CFLAGS += -Wstrict-prototypes -Wold-style-definition
-endif
-
-AM_CFLAGS += @CFLAG_VISIBILITY@
+EXTRA_DIST = libdet.map

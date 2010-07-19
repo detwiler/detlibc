@@ -34,16 +34,14 @@ AM_CPPFLAGS = -I$(top_srcdir)/include \
 	      -I$(top_srcdir)/gl/gnu \
 	      -I$(top_srcdir)/det
 
-AM_CFLAGS = @DET_CFLAGS@
-
-if DET_GOBS_WARN
-AM_CFLAGS += -Wstrict-prototypes -Wold-style-definition
-endif
+AM_CFLAGS = $(WARN_CFLAGS) \
+	    $(WERROR_CFLAGS) \
+	    $(DEBUG_CFLAGS)
 
 LDADD = ../det/libdet.la
 
-$(srcdir)/package.m4: $(top_srcdir)/configure.ac
-	:;{ \
+$(srcdir)/package.m4: $(top_srcdir)/configure.ac $(top_srcdir)/.version
+	$(AM_V_GEN):;{ \
 	  echo '# Signature of the current package.' && \
 	  echo 'm4_define([AT_PACKAGE_NAME], [@PACKAGE_NAME@])' && \
 	  echo 'm4_define([AT_PACKAGE_TARNAME], [@PACKAGE_TARNAME@])' && \

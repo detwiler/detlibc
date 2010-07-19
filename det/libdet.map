@@ -1,0 +1,39 @@
+
+LIBDET_1.0
+{
+  global:
+
+    det_buffer_calloc;
+    det_buffer_clear;
+    det_buffer_fread;
+    det_buffer_fread_all;
+    det_buffer_free;
+    det_buffer_get_capacity;
+    det_buffer_get_data;
+    det_buffer_get_remaining;
+    det_buffer_get_size;
+    det_buffer_malloc;
+    det_buffer_read;
+    det_buffer_zalloc;
+    det_cli_conn_un;
+    det_err_dump;
+    det_err_exit;
+    det_err_msg;
+    det_err_quit;
+    det_err_ret;
+    det_err_sys;
+    det_receive_message;
+    det_send_message;
+    det_serv_accept_un;
+    det_serv_listen_un;
+    det_signal_child;
+    det_signal_parent;
+    det_signal_wait;
+    det_wait_child;
+    det_wait_parent;
+
+  local:
+
+    *;
+
+};
