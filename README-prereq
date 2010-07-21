@@ -1,3 +1,6 @@
+This file copied almost verbatim from GNU coreutils:
+http://www.gnu.org/software/coreutils/
+
 This gives some notes on obtaining the tools required for development.
 I.E. the tools checked for by the bootstrap script and include:
 

@@ -1,4 +1,4 @@
-## Makefile for gnulib/lib				-*-Makefile-*-
+## Makefile for gl/gnu
 
 # Copyright (C) 1995-2007, 2009-2010 Free Software Foundation, Inc.
 
