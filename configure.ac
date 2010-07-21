@@ -49,35 +49,8 @@ DET_ARG_ENABLE([debug], [no])
 AM_CONDITIONAL([DET_DEBUG], [test "x$enable_debug" = xyes])
 
 # conditionally make warnings be errors
-DET_ARG_ENABLE([warn-error], [no])
+DET_ARG_ENABLE([warn_error], [no])
 AM_CONDITIONAL([DET_WARN_ERROR], [test "x$enable_warn_error" = xyes])
-
-gl_MANYWARN_ALL_GCC([warnings])
-
-nw=
-nw="$nw -Wsystem-headers"
-nw="$nw -Wtraditional"
-nw="$nw -Wundef"
-nw="$nw -Wc++-compat"
-nw="$nw -Wdeclaration-after-statement"
-nw="$nw -Wunreachable-code"
-nw="$nw -Wtraditional-conversion"
-nw="$nw -Wvla"
-
-gl_MANYWARN_COMPLEMENT([warnings], [$warnings], [$nw])
-for w in $warnings; do
-  gl_WARN_ADD([$w])
-done
-
-gl_WARN_ADD([-fdiagnostics-show-option])
-
-AM_COND_IF([DET_WARN_ERROR], [gl_WARN_ADD([-Werror], [WERROR_CFLAGS])])
-
-AM_COND_IF([DET_DEBUG],
-           [gl_WARN_ADD([-g], [DEBUG_CFLAGS])
-            gl_WARN_ADD([-O0], [DEBUG_CFLAGS])])
-
-gl_VISIBILITY
 
 # Checks for libraries.
 
@@ -145,6 +118,46 @@ AC_COMPILE_IFELSE(
     [AC_MSG_RESULT([no])
      AC_DEFINE([det_format_printf(x,y)], [], [printf format attribute])])])
 CFLAGS="$INIT_CFLAGS"
+
+gl_MANYWARN_ALL_GCC([warnings])
+
+nw=
+nw="$nw -Wsystem-headers"
+nw="$nw -Wtraditional"
+nw="$nw -Wundef"
+nw="$nw -Wc++-compat"
+nw="$nw -Wdeclaration-after-statement"
+nw="$nw -Wunreachable-code"
+nw="$nw -Wtraditional-conversion"
+nw="$nw -Wvla"
+
+gl_MANYWARN_COMPLEMENT([warnings], [$warnings], [$nw])
+for w in $warnings; do
+  gl_WARN_ADD([$w])
+done
+
+gl_WARN_ADD([-fdiagnostics-show-option])
+
+# We use a slightly smaller set of warning options for gl/.
+# Remove the following and save the result in GNULIB_WARN_CFLAGS.
+nw=
+nw="$nw -Wlogical-op"
+nw="$nw -Wcast-qual"
+nw="$nw -Wstrict-prototypes"
+nw="$nw -Wold-style-definition"
+nw="$nw -Wpadded"
+nw="$nw -Wnested-externs"
+
+gl_MANYWARN_COMPLEMENT([GNULIB_WARN_CFLAGS], [$WARN_CFLAGS], [$nw])
+AC_SUBST([GNULIB_WARN_CFLAGS])
+
+AM_COND_IF([DET_WARN_ERROR], [gl_WARN_ADD([-Werror], [WERROR_CFLAGS])])
+
+AM_COND_IF([DET_DEBUG],
+           [gl_WARN_ADD([-g], [DEBUG_CFLAGS])
+            gl_WARN_ADD([-O0], [DEBUG_CFLAGS])])
+
+gl_VISIBILITY
 
 # Checks for library functions.
 AC_FUNC_FORK

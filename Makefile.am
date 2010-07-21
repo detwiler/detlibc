@@ -29,8 +29,11 @@ gen-ChangeLog:
 	  mv $(distdir)/cl-t $(distdir)/ChangeLog;			\
 	fi
 
-EXTRA_DIST = .version
+EXTRA_DIST = .version \
+	     README \
+	     README-hacking \
+	     README-prereq
 
 DISTCHECK_CONFIGURE_FLAGS = --enable-warn-error
 
-ACLOCAL_AMFLAGS = -I m4 -I gl/m4
+ACLOCAL_AMFLAGS = -I m4

@@ -1,35 +1,25 @@
 # .gitignore
-
-# object files
 *.[oa]
-
-# generated build files
+*.l[oa]
+.deps/
+.gvimrc
+.libs/
+.tarball-version
+.version
+ChangeLog
+INSTALL
+Makefile
+Makefile.in
+aclocal.m4
 autom4te.cache/
 autoscan.log
+build-aux
 build-aux/
-INSTALL
-aclocal.m4
-ChangeLog
 config.*
 configure
 configure.scan
-detlibc-release
-gl/
-libtool
-Makefile
-Makefile.in
-stamp-h1
-.deps/
-.libs/
-*.l[oa]
-.tarball-version
-.version
-
-# vim config files
-.gvimrc
-
-# cscope files
 cscope.*
-
-# ctags files
+detlibc-release
+libtool
+stamp-h1
 tags
