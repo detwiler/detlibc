@@ -1,6 +1,9 @@
 # Makefile.am
 
-check_PROGRAMS = test-buffer-fread-all \
+TESTS = check_buffer
+
+check_PROGRAMS = $(TESTS) \
+		 test-buffer-fread-all \
 		 test-err-dump \
 		 test-err-exit \
 		 test-err-msg \
@@ -9,7 +12,8 @@ check_PROGRAMS = test-buffer-fread-all \
 		 test-err-quit \
 		 test-socket-signal
 
-EXTRA_DIST = test-buffer-fread-all.c \
+EXTRA_DIST = check_buffer.c \
+	     test-buffer-fread-all.c \
 	     test-err-dump.c \
 	     test-err-exit.c \
 	     test-err-msg.c \
@@ -32,13 +36,16 @@ TESTSUITE_AT = testsuite.at \
 AM_CPPFLAGS = -I$(top_srcdir)/include \
 	      -I$(top_builddir)/gl/gnu \
 	      -I$(top_srcdir)/gl/gnu \
-	      -I$(top_srcdir)/det
+	      -I$(top_srcdir)/det \
+	      $(CHECK_CFLAGS)
 
 AM_CFLAGS = $(WARN_CFLAGS) \
 	    $(WERROR_CFLAGS) \
-	    $(DEBUG_CFLAGS)
+	    $(DEBUG_CFLAGS) \
+	    $(CHECK_CFLAGS)
 
-LDADD = ../det/libdet.la
+LDADD = ../det/libdet.la \
+	$(CHECK_LIBS)
 
 $(srcdir)/package.m4: $(top_srcdir)/configure.ac $(top_srcdir)/.version
 	$(AM_V_GEN):;{ \

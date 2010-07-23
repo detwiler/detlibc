@@ -2,6 +2,7 @@
 
 atconfig
 atlocal
+check_buffer
 package.m4
 test-buffer-fread-all
 test-err-dump

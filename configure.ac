@@ -54,6 +54,8 @@ AM_CONDITIONAL([DET_WARN_ERROR], [test "x$enable_warn_error" = xyes])
 
 # Checks for libraries.
 
+AM_PATH_CHECK
+
 # Checks for header files.
 
 # gnulib!
