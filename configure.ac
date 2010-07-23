@@ -16,8 +16,6 @@ AC_CONFIG_HEADER([config.h])
 AM_INIT_AUTOMAKE([-Wall -Werror color-tests dist-bzip2])
 AM_SILENT_RULES([yes])
 
-# it seems that if we're using system extensions and we're using libtool, then
-# this macro needs to be called before libtool is initialized
 AC_USE_SYSTEM_EXTENSIONS
 
 LT_PREREQ([2.2])
@@ -37,12 +35,6 @@ AC_PROG_INSTALL
 AC_PROG_LN_S
 
 # additional configure options
-AC_DEFUN([DET_ARG_ENABLE],
-         [AC_ARG_ENABLE([m4_translit([$1], [_], [-])],
-                        [AS_HELP_STRING([--enable-m4_translit([$1], [_], [-])],
-                                        [enable $1 (default=$2)])],
-                        [enable_[]$1=$enableval],
-                        [enable_[]$1=$2])])
 
 # conditionally enable debug
 DET_ARG_ENABLE([debug], [no])
