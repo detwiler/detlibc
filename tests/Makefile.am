@@ -20,7 +20,7 @@ EXTRA_DIST = check_buffer.c \
 	     test-err-ret.c \
 	     test-err-sys.c \
 	     test-err-quit.c \
-	     test-socket-signal
+	     test-socket-signal.c
 
 TESTSUITE_AT = testsuite.at \
 	       local.at \

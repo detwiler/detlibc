@@ -52,6 +52,10 @@
 # include <sys/stat.h>
 #endif /* HAVE_SYS_STAT_H */
 
+#if HAVE_FCNTL_H
+# include <fcntl.h>
+#endif /* HAVE_FCNTL_H */
+
 #ifdef HAVE_SYS_SOCKET_H
 # include <sys/socket.h>
 #endif /* HAVE_SYS_SOCKET_H */
@@ -63,6 +67,10 @@
 #ifdef HAVE_SYS_WAIT_H
 # include <sys/wait.h>
 #endif /* HAVE_SYS_WAIT_H */
+
+#if HAVE_SYSLOG_H
+# include <syslog.h>
+#endif /* HAVE_SYSLOG_H */
 
 #ifdef TIME_WITH_SYS_TIME
 # include <sys/time.h>

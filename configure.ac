@@ -56,8 +56,8 @@ gl_INIT
 AC_HEADER_STDC
 AC_HEADER_ASSERT
 AC_HEADER_TIME
-AC_CHECK_HEADERS([sys/socket.h sys/stat.h sys/time.h sys/types.h sys/un.h])
-AC_CHECK_HEADERS([sys/wait.h unistd.h])
+AC_CHECK_HEADERS([fcntl.h sys/socket.h sys/stat.h sys/time.h sys/types.h])
+AC_CHECK_HEADERS([sys/un.h sys/wait.h syslog.h unistd.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 # typedefs, structures

@@ -3,6 +3,7 @@
 lib_LTLIBRARIES = libdet.la
 
 libdet_la_SOURCES = buffer.c \
+		    daemon.c \
 		    error.c \
 		    signal.c \
 		    socket.c \

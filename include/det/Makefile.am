@@ -4,6 +4,7 @@ detincludedir = $(includedir)/det
 
 detinclude_HEADERS = buffer.h \
 		     common.h \
+		     daemon.h \
 		     debug.h \
 		     error.h \
 		     signal.h \
