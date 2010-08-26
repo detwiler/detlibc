@@ -16,6 +16,8 @@ LIBDET_1.0
     det_buffer_read;
     det_buffer_zalloc;
     det_cli_conn_un;
+    det_data_to_hex;
+    det_hex_to_data;
     det_err_dump;
     det_err_exit;
     det_err_msg;

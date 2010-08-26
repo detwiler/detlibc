@@ -7,7 +7,8 @@ libdet_la_SOURCES = buffer.c \
 		    error.c \
 		    signal.c \
 		    socket.c \
-		    socket_un.c
+		    socket_un.c \
+		    utils.c
 
 noinst_HEADERS = system.h
 

@@ -5,6 +5,7 @@ atlocal
 check_buffer
 package.m4
 test-buffer-fread-all
+test-data-hex
 test-err-dump
 test-err-exit
 test-err-msg

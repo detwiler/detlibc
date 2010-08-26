@@ -1,6 +1,7 @@
 # Makefile.am
 
-TESTS = check_buffer
+TESTS = check_buffer \
+       	test-data-hex
 
 check_PROGRAMS = $(TESTS) \
 		 test-buffer-fread-all \

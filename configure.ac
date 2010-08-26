@@ -47,6 +47,7 @@ AM_CONDITIONAL([DET_WARN_ERROR], [test "x$enable_warn_error" = xyes])
 # Checks for libraries.
 
 AM_PATH_CHECK
+AC_CHECK_LIB([gmp], [main])
 
 # Checks for header files.
 
@@ -56,7 +57,7 @@ gl_INIT
 AC_HEADER_STDC
 AC_HEADER_ASSERT
 AC_HEADER_TIME
-AC_CHECK_HEADERS([fcntl.h sys/socket.h sys/stat.h sys/time.h sys/types.h])
+AC_CHECK_HEADERS([fcntl.h gmp.h sys/socket.h sys/stat.h sys/time.h sys/types.h])
 AC_CHECK_HEADERS([sys/un.h sys/wait.h syslog.h unistd.h])
 
 # Checks for typedefs, structures, and compiler characteristics.

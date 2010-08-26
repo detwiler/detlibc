@@ -9,4 +9,5 @@ detinclude_HEADERS = buffer.h \
 		     error.h \
 		     signal.h \
 		     socket.h \
-		     socket_un.h
+		     socket_un.h \
+		     utils.h

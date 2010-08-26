@@ -83,6 +83,10 @@
 # endif /* HAVE_SYS_TIME */
 #endif /* TIME_WITH_SYS_TIME */
 
+#if HAVE_GMP_H
+# include <gmp.h>
+#endif /* HAVE_GMP_H */
+
 /* gnulib ensures presence */
 #include <minmax.h>
 #include <stdbool.h>
