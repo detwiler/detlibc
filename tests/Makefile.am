@@ -46,6 +46,7 @@ AM_CFLAGS = $(WARN_CFLAGS) \
 	    $(CHECK_CFLAGS)
 
 LDADD = ../det/libdet.la \
+	$(GMP_LIBS) \
 	$(CHECK_LIBS)
 
 $(srcdir)/package.m4: $(top_srcdir)/configure.ac $(top_srcdir)/.version

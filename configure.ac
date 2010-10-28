@@ -33,6 +33,7 @@ AC_PROG_AWK
 AC_PROG_MAKE_SET
 AC_PROG_INSTALL
 AC_PROG_LN_S
+PKG_PROG_PKG_CONFIG
 
 # additional configure options
 
@@ -46,8 +47,13 @@ AM_CONDITIONAL([DET_WARN_ERROR], [test "x$enable_warn_error" = xyes])
 
 # Checks for libraries.
 
-AM_PATH_CHECK
-AC_CHECK_LIB([gmp], [main])
+AC_CHECK_LIB([gmp], [__gmpz_init],
+             [AC_SUBST([GMP_LIBS], [-lgmp])],
+             [AC_MSG_ERROR([Could not find gmp library])])
+
+# TODO make pkg-config data
+# TODO rewrite tests to remove dependency on check
+PKG_CHECK_MODULES([CHECK], [check >= 0.9.8])
 
 # Checks for header files.
 
