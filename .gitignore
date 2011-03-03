@@ -6,6 +6,7 @@
 .libs/
 .tarball-version
 .version
+/build-aux
 ChangeLog
 INSTALL
 Makefile

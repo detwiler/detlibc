@@ -36,4 +36,4 @@ EXTRA_DIST = .version \
 
 DISTCHECK_CONFIGURE_FLAGS = --enable-warn-error
 
-ACLOCAL_AMFLAGS = -I m4
+ACLOCAL_AMFLAGS = -I m4 -I /usr/share/aclocal --install
