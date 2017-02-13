@@ -30,6 +30,8 @@ det_daemonize(
 {
   int result = -1;
 
+  int fd0, fd1, fd2;
+
   if (unlikely(!cmd))
   {
     errno = EINVAL;
@@ -114,9 +116,9 @@ det_daemonize(
     close(fd);
 
   // attach file descriptors 0, 1, and 2 to /dev/null
-  int fd0 = open("/dev/null", O_RDWR);
-  int fd1 = dup(0);
-  int fd2 = dup(0);
+  fd0 = open("/dev/null", O_RDWR);
+  fd1 = dup(0);
+  fd2 = dup(0);
 
   openlog(cmd, LOG_CONS, LOG_DAEMON);
 

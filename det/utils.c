@@ -75,6 +75,8 @@ det_hex_to_data(
 {
   ssize_t result = -1;
 
+  size_t count = 0;
+
   if (unlikely(!hex || !data))
   {
     errno = EINVAL;
@@ -104,8 +106,6 @@ det_hex_to_data(
     det_derr_msg("Could not read all hex characters");
     goto errout;
   }
-
-  size_t count = 0;
 
   mpz_export(data, &count, 1, sizeof(uint8_t), 1, 0, mpz);
 
