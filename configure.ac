@@ -13,13 +13,10 @@ AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_HEADER([config.h])
 
-AM_INIT_AUTOMAKE([-Wall -Werror color-tests dist-bzip2])
+AM_INIT_AUTOMAKE([-Wall -Werror color-tests dist-xz])
 AM_SILENT_RULES([yes])
 
 AC_USE_SYSTEM_EXTENSIONS
-
-LT_PREREQ([2.2])
-LT_INIT
 
 # Checks for programs.
 AC_PROG_CC
@@ -29,10 +26,24 @@ AC_PROG_CC_C_O
 # gnulib!
 gl_EARLY
 
+# AM_PROG_AR is not available in automake 1.11.1 (CentOS 6.x), but its use is
+# required in automake 1.12 onward, so we used it only if it exists.
+# Ref: https://lists.gnu.org/archive/html/automake/2012-05/msg00014.html
+m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
+
+# Workaround for new GNU binutils ar(1) warning which libtool has yet to deal with
+# Ref: https://bugzilla.redhat.com/show_bug.cgi?id=1216905
+# Ref: https://bugzilla.redhat.com/show_bug.cgi?id=1155273#c13
+AS_IF([test "x$AR_FLAGS" = x],
+      [AC_SUBST([AR_FLAGS], [cr])])
+
+LT_PREREQ([2.2])
+LT_INIT
+
 AC_PROG_AWK
-AC_PROG_MAKE_SET
 AC_PROG_INSTALL
 AC_PROG_LN_S
+AC_PROG_MAKE_SET
 PKG_PROG_PKG_CONFIG
 
 # additional configure options
@@ -63,8 +74,8 @@ gl_INIT
 AC_HEADER_STDC
 AC_HEADER_ASSERT
 AC_HEADER_TIME
-AC_CHECK_HEADERS([fcntl.h gmp.h sys/socket.h sys/stat.h sys/time.h sys/types.h])
-AC_CHECK_HEADERS([sys/un.h sys/wait.h syslog.h unistd.h])
+AC_CHECK_HEADERS([fcntl.h gmp.h sys/resource.h sys/socket.h sys/stat.h])
+AC_CHECK_HEADERS([sys/time.h sys/types.h sys/un.h sys/wait.h syslog.h unistd.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 # typedefs, structures
@@ -122,14 +133,9 @@ CFLAGS="$INIT_CFLAGS"
 
 gl_MANYWARN_ALL_GCC([warnings])
 
+# Remove these warnings.
 nw=
 nw="$nw -Wsystem-headers"
-nw="$nw -Wtraditional"
-nw="$nw -Wundef"
-nw="$nw -Wc++-compat"
-nw="$nw -Wdeclaration-after-statement"
-nw="$nw -Wunreachable-code"
-nw="$nw -Wtraditional-conversion"
 nw="$nw -Wvla"
 
 gl_MANYWARN_COMPLEMENT([warnings], [$warnings], [$nw])
@@ -142,14 +148,18 @@ gl_WARN_ADD([-fdiagnostics-show-option])
 # We use a slightly smaller set of warning options for gl/.
 # Remove the following and save the result in GNULIB_WARN_CFLAGS.
 nw=
-nw="$nw -Wlogical-op"
-nw="$nw -Wcast-qual"
-nw="$nw -Wstrict-prototypes"
 nw="$nw -Wold-style-definition"
-nw="$nw -Wpadded"
-nw="$nw -Wnested-externs"
+nw="$nw -Wstrict-prototypes"
+nw="$nw -Wsuggest-attribute=pure"
+nw="$nw -Wsuggest-attribute=const"
 
 gl_MANYWARN_COMPLEMENT([GNULIB_WARN_CFLAGS], [$WARN_CFLAGS], [$nw])
+
+# These warnings are enabled by other warnings (e.g.: -Wextra),
+# so we have to specifically disable them.
+gl_WARN_ADD([-Wno-unused-parameter], [GNULIB_WARN_CFLAGS])
+gl_WARN_ADD([-Wno-sign-compare], [GNULIB_WARN_CFLAGS])
+
 AC_SUBST([GNULIB_WARN_CFLAGS])
 
 AM_COND_IF([DET_WARN_ERROR], [gl_WARN_ADD([-Werror], [WERROR_CFLAGS])])

@@ -22,7 +22,7 @@
 
 __DET_BEGIN_C_DECLS__
 
-ssize_t
+int
 det_daemonize(
     const char *cmd
     ) DETLIB_EXPORT;
